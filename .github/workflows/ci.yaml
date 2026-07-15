@@ -1,0 +1,45 @@
+
+
+name: CI pipeline
+
+on: 
+  workflow_dispatch:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  sonar:
+    runs-on: [self-hosted, wsl-pvk]
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: SonarQube analysis
+        uses: SonarSource/sonarqube-scan-action@v4
+        with:
+          args: >
+            -Dsonar.projectKey=NodeJS_App
+            -Dsonar.sources=.
+            -Dsonar.qualitygate.wait=true
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+  docker:
+    runs-on: [self-hosted, wsl-pvk]
+    if: github.event_name == 'push'  || github.event_name == 'workflow_dispatch'
+    environment: prod
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Docker login, build, tag and push
+        uses: karthipv-07/git-demo/.github/actions/docker-build-push@main
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
