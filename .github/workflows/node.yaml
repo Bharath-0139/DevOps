@@ -1,33 +1,31 @@
-  name: Base node
+name: Base node
 
-  on:
-   workflow_dispatch:
+on:
+  workflow_dispatch:
 
-  jobs:
-    node:
-      runs-on: [self-hosted,fsd-bharath]
-    
+jobs:
+  node:
+    runs-on: [self-hosted, fsd-bharath]
+
     steps:
-     - name: Clone code
-       uses: actions/checkout@v7
+      - name: Clone code
+        uses: actions/checkout@v7
 
-     - name: Node install
-       uses: actions/setup-node@v6
-       with:
-         node-version: 24
+      - name: Node install
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
 
-     - name: Install Dependencies
-       run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-     - name: Run Application
-        run: 
-        node app.js
-        sleep 5
-        curl http://localhost:8080
-        curl http://localhost:8080/health
-        pkill -f "node app.js"
-       
-     
+      - name: Run Application
+        run: |
+          node app.js &
+          sleep 5
+          curl http://localhost:8080
+          curl http://localhost:8080/health
+          pkill -f "node app.js"
       
     
       
