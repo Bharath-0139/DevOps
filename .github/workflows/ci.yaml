@@ -4,10 +4,7 @@ name: CI pipeline
 
 on: 
   workflow_dispatch:
-  push:
-    branches: main
-  pull_request:
-    branches: main
+   
 
 jobs:
   sonar:
@@ -32,7 +29,7 @@ jobs:
   docker:
     runs-on: [self-hosted, fsd-bharath]
     if: github.event_name == 'push'  || github.event_name == 'workflow_dispatch'
-    environment: prod
+    environment: production
     
     steps:
       - name: Checkout code
