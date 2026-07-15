@@ -1,0 +1,14 @@
+ name: demo pl
+
+ on:
+  push:
+    branches: ["main"]
+
+ jobs:
+   demo:
+    runs-on: ubuntu-latest
+
+    steps:
+        -name: Demo pipeline check
+       run: "Demo pipeline check"
+  
