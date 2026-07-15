@@ -20,7 +20,7 @@
        run: npm install
 
      - name: Run Application
-      run: 
+        run: 
         node app.js
         sleep 5
         curl http://localhost:8080
