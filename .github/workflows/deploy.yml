@@ -11,10 +11,12 @@ jobs:
 
     environment:
       name: production
+ steps:
+  - uses: actions/checkout@v4
 
-    steps:
-      - uses: actions/checkout@v4
+  - run: echo "Waiting for approval..."
 
-      - run: echo "Waiting for approval..."
-
-      - run: echo "Docker Build & Push"
+  - uses: ./.github/actions/docker-build-push
+    with:
+      image_name: my-app
+     
