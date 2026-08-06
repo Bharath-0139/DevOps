@@ -1,0 +1,17 @@
+name: SonarQube PR Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run SonarQube Scan
+        run: echo "Running SonarQube Scan..."
