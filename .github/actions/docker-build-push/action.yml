@@ -25,7 +25,7 @@ runs:
     - name: Login to Docker Hub
       shell: bash
       run: |
-        echo "${{ inputs.dockerhub_token }}" | \
+        echo "${{ inputs.dockerhub_username }}" | \
         docker login \
           --username "${{ inputs.dockerhub_username }}" \
           --password-stdin
