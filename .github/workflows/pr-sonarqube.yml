@@ -8,11 +8,15 @@ on:
 jobs:
   sonarqube:
     name: SonarQube Check
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Test workflow
-        run: echo "SonarQube workflow is working"
+      - name: Test self-hosted runner
+        run: |
+          echo "Self-hosted runner is working"
+          echo "Runner: $RUNNER_NAME"
+          echo "OS: $RUNNER_OS"
+          echo "Architecture: $RUNNER_ARCH"
