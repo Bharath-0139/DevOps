@@ -47,5 +47,4 @@ runs:
       shell: bash
       run: |
         docker push \
-          ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }
           ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
