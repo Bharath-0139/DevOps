@@ -1,3 +1,10 @@
+name: Docker Deployment
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -14,5 +21,4 @@ jobs:
         with:
           dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
-          image_name: employee-management
           image_tag: latest
