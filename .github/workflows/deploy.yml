@@ -1,13 +1,5 @@
-name: Docker Deployment
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   docker:
-    name: Build and Push Docker Image
     runs-on: ubuntu-latest
 
     environment:
