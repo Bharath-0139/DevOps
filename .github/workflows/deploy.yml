@@ -1,0 +1,28 @@
+name: Docker Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  docker:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    environment:
+      name: production
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Docker Build Tag Push
+        uses: ./.github/actions/docker-build-push
+        with:
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
+          image_name: student-management-system
+          image_tag: latest
