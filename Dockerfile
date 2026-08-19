@@ -5,9 +5,9 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# Clean cache and install with retry logic and improved timeout settings
+# Force fresh downloads and aggressive retries to resolve checksum errors
 RUN npm cache clean --force && \
-    npm ci --prefer-offline --no-audit --fetch-timeout=120000 --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000
+    npm ci --no-cache --fetch-timeout=120000 --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000 --fetch-retries=5
 
 COPY . .
 
