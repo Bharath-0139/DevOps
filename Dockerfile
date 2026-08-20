@@ -5,7 +5,6 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# Install dependencies with standard npm ci
 RUN npm ci
 
 COPY . .
