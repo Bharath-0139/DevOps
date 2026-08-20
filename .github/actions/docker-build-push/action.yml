@@ -29,13 +29,13 @@ runs:
       shell: bash
       run: |
         docker build \
-          -t ${{ inputs.dockerhub_username }}/devops:${{ inputs.image_tag }} .
+          -t ${{ inputs.dockerhub_username }}/bharath:${{ inputs.image_tag }} .
 
     - name: Docker Push
       shell: bash
       run: |
         docker push \
-          ${{ inputs.dockerhub_username }}/devops:${{ inputs.image_tag }}
+          ${{ inputs.dockerhub_username }}/bharath:${{ inputs.image_tag }}
 
     - name: Docker Logout
       shell: bash
